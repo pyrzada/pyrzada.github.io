@@ -85,23 +85,35 @@ const services = [
 
 // Tech grouped by category — expanded for the real resume
 const technologies = [
+    // Languages (per resume: Python · Java 21 · TypeScript · Go · Rust · Kotlin · SQL · GraphQL)
+    {name: "Python 3.12", icon: creator, category: "Languages"},
+    {name: "Java 21", icon: java, category: "Languages"},
+    {name: "TypeScript", icon: typescript, category: "Languages"},
+    {name: "Go", icon: backend, category: "Languages"},
+    {name: "Rust", icon: backend, category: "Languages"},
+    {name: "Kotlin", icon: backend, category: "Languages"},
+    {name: "SQL", icon: postgresql, category: "Languages"},
+    {name: "GraphQL", icon: backend, category: "Languages"},
+
     // Frontend
     {name: "Next.js 15", icon: nextjs, category: "Frontend"},
     {name: "React 19", icon: reactjs, category: "Frontend"},
     {name: "Angular", icon: angular, category: "Frontend"},
     {name: "Tailwind CSS", icon: tailwind, category: "Frontend"},
-    {name: "TypeScript", icon: typescript, category: "Languages"},
+    {name: "Redux Toolkit", icon: redux, category: "Frontend"},
 
     // Backend
-    {name: "Node.js", icon: nodejs, category: "Backend"},
-    {name: "Java 21 / Spring Boot", icon: java, category: "Backend"},
-    {name: "FastAPI / Python 3.12", icon: creator, category: "Backend"},
+    {name: "FastAPI", icon: creator, category: "Backend"},
+    {name: "Spring Boot 3", icon: java, category: "Backend"},
+    {name: "Node.js / NestJS", icon: nodejs, category: "Backend"},
     {name: "Laravel", icon: laravel, category: "Backend"},
+    {name: ".NET 8", icon: backend, category: "Backend"},
 
     // AI / Agentic
     {name: "LangChain", icon: creator, category: "AI / Agentic"},
     {name: "LangGraph", icon: creator, category: "AI / Agentic"},
     {name: "LlamaIndex", icon: creator, category: "AI / Agentic"},
+    {name: "LangSmith", icon: creator, category: "AI / Agentic"},
     {name: "Vercel AI SDK", icon: creator, category: "AI / Agentic"},
     {name: "LiteLLM", icon: creator, category: "AI / Agentic"},
 
@@ -126,7 +138,6 @@ const technologies = [
     {name: "Kubernetes", icon: docker, category: "Cloud & DevOps"},
     {name: "Docker", icon: docker, category: "Cloud & DevOps"},
     {name: "Terraform", icon: docker, category: "Cloud & DevOps"},
-    {name: "Redux Toolkit", icon: redux, category: "Frontend"},
     {name: "Git", icon: git, category: "Cloud & DevOps"},
 ];
 
