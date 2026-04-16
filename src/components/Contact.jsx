@@ -154,16 +154,28 @@ const Contact = () => {
         }
 
         try {
+            // Send the sender's address under several common template-variable
+            // names so the EmailJS template can pick whichever it references.
+            // The `reply_to` field, when wired to the template's Reply-To header,
+            // makes hitting "Reply" in the inbox go straight to the client.
             await emailjs.send(
                 EMAILJS_SERVICE,
                 EMAILJS_TEMPLATE,
                 {
                     from_name: form.name,
-                    to_name: profile.name,
+                    name: form.name,
+                    user_name: form.name,
                     from_email: form.email,
+                    email: form.email,
+                    user_email: form.email,
                     reply_to: form.email,
+                    to_name: profile.name,
                     to_email: EMAIL_TO,
+                    subject: `Portfolio enquiry from ${form.name}`,
                     message: form.message,
+                    // Ensure the email body always contains the address even if
+                    // the template author forgot to add {{from_email}}.
+                    message_html: `<p><strong>From:</strong> ${form.name} &lt;${form.email}&gt;</p><p>${form.message.replace(/\n/g, "<br/>")}</p><hr/><p><em>Reply to this email to respond directly to ${form.email}.</em></p>`,
                 },
                 EMAILJS_PUBLIC_KEY
             );
