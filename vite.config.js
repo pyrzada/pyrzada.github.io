@@ -6,22 +6,25 @@ export default defineConfig({
     build: {
         target: "es2020",
         cssCodeSplit: true,
-        chunkSizeWarningLimit: 600,
+        chunkSizeWarningLimit: 800,
         rollupOptions: {
             output: {
+                // Only split out the truly heavy isolated libs.
+                // React + react-dom + react-router and any lib that consumes
+                // them (react-vertical-timeline, use-sync-external-store) stay
+                // in the main bundle so default-export interop is correct
+                // across chunks. Splitting React causes
+                // `Cannot read properties of undefined (reading 'useLayoutEffect')`.
                 manualChunks: (id) => {
                     if (!id.includes("node_modules")) return;
-                    if (id.includes("three")) return "vendor-three";
-                    if (id.includes("@react-three")) return "vendor-r3f";
+                    if (id.includes("three") || id.includes("@react-three")) return "vendor-three";
                     if (id.includes("framer-motion")) return "vendor-motion";
-                    if (id.includes("react-vertical-timeline")) return "vendor-timeline";
-                    if (id.includes("@emailjs")) return "vendor-email";
                     if (id.includes("react-icons")) return "vendor-icons";
                     if (id.includes("lenis")) return "vendor-lenis";
-                    if (id.includes("react-router") || id.includes("react-dom") || id.includes("/react/")) {
-                        return "vendor-react";
-                    }
-                    return "vendor";
+                    if (id.includes("@emailjs")) return "vendor-email";
+                    // Everything else (React, react-dom, react-router,
+                    // react-vertical-timeline, helpers, etc) goes to main.
+                    return undefined;
                 },
             },
         },
